@@ -1,0 +1,213 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E711BBC315C8CB8700E7424C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E711BBC215C8CB8700E7424C /* main.cpp */; };
+		E711BBC515C8CB8700E7424C /* PhotoMosaic.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = E711BBC415C8CB8700E7424C /* PhotoMosaic.1 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E711BBBC15C8CB8700E7424C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				E711BBC515C8CB8700E7424C /* PhotoMosaic.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		E711BBBE15C8CB8700E7424C /* PhotoMosaic */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PhotoMosaic; sourceTree = BUILT_PRODUCTS_DIR; };
+		E711BBC215C8CB8700E7424C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		E711BBC415C8CB8700E7424C /* PhotoMosaic.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = PhotoMosaic.1; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E711BBBB15C8CB8700E7424C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E711BBB315C8CB8700E7424C = {
+			isa = PBXGroup;
+			children = (
+				E711BBC115C8CB8700E7424C /* PhotoMosaic */,
+				E711BBBF15C8CB8700E7424C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E711BBBF15C8CB8700E7424C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E711BBBE15C8CB8700E7424C /* PhotoMosaic */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E711BBC115C8CB8700E7424C /* PhotoMosaic */ = {
+			isa = PBXGroup;
+			children = (
+				E711BBC215C8CB8700E7424C /* main.cpp */,
+				E711BBC415C8CB8700E7424C /* PhotoMosaic.1 */,
+			);
+			path = PhotoMosaic;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E711BBBD15C8CB8700E7424C /* PhotoMosaic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E711BBC815C8CB8700E7424C /* Build configuration list for PBXNativeTarget "PhotoMosaic" */;
+			buildPhases = (
+				E711BBBA15C8CB8700E7424C /* Sources */,
+				E711BBBB15C8CB8700E7424C /* Frameworks */,
+				E711BBBC15C8CB8700E7424C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PhotoMosaic;
+			productName = PhotoMosaic;
+			productReference = E711BBBE15C8CB8700E7424C /* PhotoMosaic */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E711BBB515C8CB8700E7424C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = peacedove;
+			};
+			buildConfigurationList = E711BBB815C8CB8700E7424C /* Build configuration list for PBXProject "PhotoMosaic" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E711BBB315C8CB8700E7424C;
+			productRefGroup = E711BBBF15C8CB8700E7424C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E711BBBD15C8CB8700E7424C /* PhotoMosaic */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E711BBBA15C8CB8700E7424C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E711BBC315C8CB8700E7424C /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E711BBC615C8CB8700E7424C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		E711BBC715C8CB8700E7424C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		E711BBC915C8CB8700E7424C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E711BBCA15C8CB8700E7424C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E711BBB815C8CB8700E7424C /* Build configuration list for PBXProject "PhotoMosaic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E711BBC615C8CB8700E7424C /* Debug */,
+				E711BBC715C8CB8700E7424C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E711BBC815C8CB8700E7424C /* Build configuration list for PBXNativeTarget "PhotoMosaic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E711BBC915C8CB8700E7424C /* Debug */,
+				E711BBCA15C8CB8700E7424C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E711BBB515C8CB8700E7424C /* Project object */;
+}
