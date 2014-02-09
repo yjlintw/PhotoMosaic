@@ -9,6 +9,7 @@ Usage
 ./Photomosaic inputfile imageLibPath outputfile
 
 
-Known Issue
+TODO
 ============
-1. Does not support traversing subdirectory yet.
+1. Support traversing subdirectory yet.
+2. Support custom output resolution yet.
