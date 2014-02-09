@@ -199,9 +199,19 @@ int main(int argc, const char * argv[])
     std::vector<cv::Mat> images;
     std::vector<cv::Scalar> colors;
     
+    puts("-get all image files in directory");
+
     std::vector<std::string> imgList = listAllImageFiles(imgLibPath);
+    
+    puts("*done");
+    
+    puts("-processing all image get from the directory");
     //loadImage(images, colors, imgListFile, outFile);
     loadImage(images, colors, imgList);//, outFile);
+    
+    puts("*done");
+    
+    puts("-finding suitable images");
     
     cv::Mat baseMat = cv::imread(inputfileName);
     cv::Mat processMat = baseMat.clone();
@@ -227,13 +237,21 @@ int main(int argc, const char * argv[])
     cv::Mat matchList;
     tileMatchImage(matchList, processMat, tileMat, images, colors);
     
+    puts("*done");
+    
+    cv::imwrite(outfileName, processMat);
+    
+    puts("----debug output----");
+    puts("press ctrl-c in terminal to end the process");
+    puts("press esc on result preview window to end the process");
+    
     cv::resize(resultMat, resultMat, cv::Size(800,600));
     cv::imshow("Source", resultMat);
     
     cv::resize(processMat, processMat, cv::Size(800,600));
     cv::imshow("Result", processMat);
     
-    cv::imwrite(outfileName, processMat);
+    
     
     cv::waitKey(0);
     
