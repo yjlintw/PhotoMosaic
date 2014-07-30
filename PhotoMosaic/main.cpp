@@ -15,12 +15,18 @@
 #define TILE_HEIGHT 15
 bool debugFlag = true;
 
+//  Not used in this project
 bool fileExists(std::string filename)
 {
     std::ifstream file(filename.c_str());
     return file.is_open();
 }
 
+/*  list all files in the input directory
+ *  TODO: 
+ *      1. Traverse sub-directory
+ *      2. reaname the function as list All files
+*/
 std::vector<std::string> listAllImageFiles(std::string dirPath)
 {
     std::vector<std::string> imgList;
@@ -29,11 +35,11 @@ std::vector<std::string> listAllImageFiles(std::string dirPath)
     dp = opendir(dirPath.c_str());
     
     if (dp != NULL) {
-        while (ep = readdir(dp)) {
+        while ((ep = readdir(dp))) {
             if (strcmp(ep->d_name, ".") == 0 || strcmp(ep->d_name, "..") == 0 || strcmp(ep->d_name, ".DS_Store") == 0) {
+                // bypass curent folder, parent folder and MAC index file.
                 continue;
             }
-            //puts (ep->d_name);
             imgList.push_back(dirPath + "/" + ep->d_name);
         }
         (void)closedir(dp);
@@ -42,6 +48,8 @@ std::vector<std::string> listAllImageFiles(std::string dirPath)
     }
     return imgList;
 }
+
+
 
 void loadImage(std::vector<cv::Mat>& images, std::vector<cv::Scalar>& colors, std::vector<std::string>imgList)
 {
@@ -207,7 +215,7 @@ int main(int argc, const char * argv[])
     
     puts("-processing all image get from the directory");
     //loadImage(images, colors, imgListFile, outFile);
-    loadImage(images, colors, imgList);//, outFile);
+    loadImage(images, colors, imgList);
     
     puts("*done");
     
