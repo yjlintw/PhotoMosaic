@@ -9,10 +9,13 @@
 #include <iostream>
 #include <fstream>
 #include <dirent.h>
+#include <sstream>
 #include "opencv2/opencv.hpp"
 
-#define TILE_WIDTH 20
-#define TILE_HEIGHT 15
+static int TILE_WIDTH = 20;
+static int TILE_HEIGHT = 15;
+static int OUT_RES_W = 16000;
+static int OUT_RES_H = 12000;
 bool debugFlag = true;
 
 //  Not used in this project
@@ -20,6 +23,13 @@ bool fileExists(std::string filename)
 {
     std::ifstream file(filename.c_str());
     return file.is_open();
+}
+
+int to_string(const char* value) {
+    std::stringstream s(value);
+    int result;
+    s >> result;
+    return result;
 }
 
 /*  list all files in the input directory
@@ -102,7 +112,7 @@ void computeTileAvgRGB(cv::Mat mat, cv::Mat& tileMat)
     int rowNumber = mat.rows / TILE_HEIGHT;
     
     tileMat = cv::Mat(rowNumber, colNumber, CV_8UC3);
-    cv::Mat outTileMat(1600, 1200, CV_8UC3);
+    cv::Mat outTileMat(OUT_RES_W, OUT_RES_H, CV_8UC3);
     for (int j = 0; j < rowNumber; j++) {
         for (int i = 0; i < colNumber; i++) {
             cv::Rect roiRect(i * TILE_WIDTH, j * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT);
@@ -147,11 +157,19 @@ int findNearestImage(cv::Scalar color, std::vector<cv::Scalar>colors)
     return index;
 }
 
-void tileMatchImage(cv::Mat& matchList, cv::Mat& processMat, cv::Mat tileMat, std::vector<cv::Mat> images, std::vector<cv::Scalar> colors)
+cv::Mat tileMatchImage(cv::Mat& matchList, cv::Mat& processMat, cv::Mat tileMat, std::vector<cv::Mat> images, std::vector<cv::Scalar> colors)
 {
     matchList = cv::Mat(tileMat.rows, tileMat.cols, CV_8UC1);
+    int t_Width = OUT_RES_W / tileMat.cols;
+    int t_Height = OUT_RES_H / tileMat.rows;
+    
+//    std::cout << t_Width << std::endl;
+//    std::cout << t_Height << std::endl;
 
-    cv::Mat resultMat(1600, 1200, CV_8UC3);
+    cv::Mat resultMat(OUT_RES_H, OUT_RES_W, CV_8UC3);
+    
+//    std::cout << resultMat.cols << std::endl;
+//    std::cout << resultMat.rows << std::endl;
     for (int j = 0; j < tileMat.rows; j++)
     {
         for (int i = 0; i < tileMat.cols; i++)
@@ -167,15 +185,16 @@ void tileMatchImage(cv::Mat& matchList, cv::Mat& processMat, cv::Mat tileMat, st
             
             matchList.at<uchar>(j, i) = index;
             cv::Mat smallMat = images[index].clone();
-            cv::resize(smallMat, smallMat, cv::Size(TILE_WIDTH,TILE_HEIGHT), CV_INTER_NN);
+            cv::resize(smallMat, smallMat, cv::Size(t_Width,t_Height), CV_INTER_NN);
+//            std::cout << i << "," << j << std::endl;
 
-            cv::Mat roiMat = processMat(cv::Rect(i*TILE_WIDTH, j*TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT));
+            cv::Mat roiMat = resultMat(cv::Rect(i*t_Width, j*t_Height, t_Width, t_Height));
             
             smallMat.copyTo(roiMat);
             
         }
     }
-
+    return resultMat;
 }
 
 int main(int argc, const char * argv[])
@@ -191,14 +210,19 @@ int main(int argc, const char * argv[])
     std::string imgListName = "imageList.txt";
     std::string filename = "test.txt";
     
-    if (argc != 4) {
-        puts("./PhotoMosaic inputfilePath imageLibPath outputFileName");
+    if (argc < 8) {
+        puts("./PhotoMosaic inputfilePath imageLibPath outputFileName TILE_WIDTH TILE_HEIGHT OUT_RES_W OUT_RES_H");
         return 0;
     }
     
     inputfileName = argv[1];
     imgLibPath = argv[2];
     outfileName = argv[3];
+    TILE_WIDTH = to_string(argv[4]);
+    TILE_HEIGHT = to_string(argv[5]);
+    OUT_RES_W = to_string(argv[6]);
+    OUT_RES_H = to_string(argv[7]);
+    
     
     
     imgListFile.open(imgListName.c_str());
@@ -243,21 +267,21 @@ int main(int argc, const char * argv[])
     computeTileAvgRGB(processMat, tileMat);
     
     cv::Mat matchList;
-    tileMatchImage(matchList, processMat, tileMat, images, colors);
+    resultMat = tileMatchImage(matchList, processMat, tileMat, images, colors);
     
     puts("*done");
     
-    cv::imwrite(outfileName, processMat);
+    cv::imwrite(outfileName, resultMat);
     
     puts("----debug output----");
     puts("press ctrl-c in terminal to end the process");
     puts("press esc on result preview window to end the process");
     
-    cv::resize(resultMat, resultMat, cv::Size(800,600));
-    cv::imshow("Source", resultMat);
-    
     cv::resize(processMat, processMat, cv::Size(800,600));
-    cv::imshow("Result", processMat);
+    cv::imshow("Source", processMat);
+    
+    cv::resize(resultMat, resultMat, cv::Size(800,600));
+    cv::imshow("Result", resultMat);
     
     
     
